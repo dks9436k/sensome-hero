@@ -110,35 +110,35 @@
       opacity: 0.95;
     }
 
-    /* MOBILE BEHAVIOUR */
-    @media (max-width: 768px) {
-      .hero {
-        height: auto;              /* let image decide height */
-      }
+   /* MOBILE / TABLET BEHAVIOUR */
+@media (max-width: 1024px) {
+  .hero {
+    height: auto;              /* let image decide height */
+  }
 
-      .hero-video {
-        display: none;             /* hide video on mobile */
-      }
+  .hero-video {
+    display: none;             /* hide video */
+  }
 
-      .hero-image {
-        display: block;            /* show image instead */
-      }
+  .hero-image {
+    display: block;            /* show image instead */
+  }
 
-      .hero::before {
-        /* optional: keep a softer overlay on mobile, or remove by setting background:none; */
-        background:
-          radial-gradient(circle at 20% 20%, rgba(17, 153, 142, 0.25), transparent 50%),
-          linear-gradient(to bottom, rgba(0, 0, 0, 0.35), rgba(0, 0, 0, 0.55));
-      }
+  .hero::before {
+    /* optional: keep a softer overlay on mobile, or remove by setting background:none; */
+    background:
+      radial-gradient(circle at 20% 20%, rgba(17, 153, 142, 0.25), transparent 50%),
+      linear-gradient(to bottom, rgba(0, 0, 0, 0.35), rgba(0, 0, 0, 0.55));
+  }
 
-      .hero-actions-desktop {
-        display: none;             /* no overlaid button on mobile */
-      }
+  .hero-actions-desktop {
+    display: none;             /* no overlaid button */
+  }
 
-      .hero-actions-mobile {
-        display: flex;             /* button below image */
-      }
-    }
+  .hero-actions-mobile {
+    display: flex;             /* button below image */
+  }
+}
   </style>
 </head>
 <body>
@@ -172,3 +172,4 @@
   </div>
 </body>
 </html>
+
