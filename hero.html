@@ -22,12 +22,12 @@
     .hero {
       position: relative;
       width: 100%;
-      height: 100vh;        /* full viewport */
-      overflow: hidden;     /* no scroll inside */
+      height: 90vh;          /* a bit shorter to avoid scroll in Sites */
+      overflow: hidden;
       color: #ffffff;
     }
 
-    .hero video {
+    .hero-video {
       position: absolute;
       top: 50%;
       left: 50%;
@@ -36,6 +36,14 @@
       width: auto;
       height: auto;
       transform: translate(-50%, -50%);
+      object-fit: cover;
+      z-index: 0;
+    }
+
+    .hero-image {
+      display: none;          /* hidden on desktop, shown on mobile */
+      width: 100%;
+      height: 100%;
       object-fit: cover;
       z-index: 0;
     }
@@ -51,15 +59,24 @@
       z-index: 1;
     }
 
-    /* Only the Explore button, fixed near the bottom centre */
-    .hero-actions-fixed {
+    /* Desktop / laptop: button over the video */
+    .hero-actions-desktop {
       position: absolute;
-      bottom: 10vh;             /* adjust up/down if you like */
+      bottom: 10vh;
       left: 50%;
       transform: translateX(-50%);
       z-index: 2;
       display: flex;
       justify-content: center;
+    }
+
+    /* Mobile: button below the image (no overlay) */
+    .hero-actions-mobile {
+      display: none;
+      z-index: 2;
+      justify-content: center;
+      padding: 1.5rem 0 1.5rem;
+      background: #ffffff;
     }
 
     .hero-button {
@@ -92,20 +109,66 @@
       box-shadow: 0 8px 18px rgba(0, 0, 0, 0.35);
       opacity: 0.95;
     }
+
+    /* MOBILE BEHAVIOUR */
+    @media (max-width: 768px) {
+      .hero {
+        height: auto;              /* let image decide height */
+      }
+
+      .hero-video {
+        display: none;             /* hide video on mobile */
+      }
+
+      .hero-image {
+        display: block;            /* show image instead */
+      }
+
+      .hero::before {
+        /* optional: keep a softer overlay on mobile, or remove by setting background:none; */
+        background:
+          radial-gradient(circle at 20% 20%, rgba(17, 153, 142, 0.25), transparent 50%),
+          linear-gradient(to bottom, rgba(0, 0, 0, 0.35), rgba(0, 0, 0, 0.55));
+      }
+
+      .hero-actions-desktop {
+        display: none;             /* no overlaid button on mobile */
+      }
+
+      .hero-actions-mobile {
+        display: flex;             /* button below image */
+      }
+    }
   </style>
 </head>
 <body>
   <div class="hero">
-    <video autoplay muted loop playsinline>
+    <!-- Desktop / laptop: video -->
+    <video class="hero-video" autoplay muted loop playsinline>
       <source src="hero-video.mp4" type="video/mp4" />
       Your browser does not support the video tag.
     </video>
 
-    <div class="hero-actions-fixed">
+    <!-- Mobile: static image from Drive -->
+    <img
+      class="hero-image"
+      src="https://drive.google.com/uc?export=view&id=1Rzasbe7CQzogO4Wh27PiRmSOwmS8Gnrf"
+      alt="Point-of-care diagnostics for a safer planet"
+    />
+
+    <!-- Desktop button (overlay) -->
+    <div class="hero-actions-desktop">
       <a href="https://www.sensome.in/#explore" class="hero-button" target="_top">
         Explore
       </a>
     </div>
+  </div>
+
+  <!-- Mobile button: separate row below image -->
+  <div class="hero-actions-mobile">
+    <a href="https://www.sensome.in/#explore" class="hero-button" target="_top">
+      Explore
+    </a>
   </div>
 </body>
 </html>
