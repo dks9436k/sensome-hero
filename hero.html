@@ -60,16 +60,20 @@
   justify-content: flex-start;
   text-align: center;
   padding: 0 1.75rem;
-  margin-top: 60vh;      /* tagline moves down */
+  margin-top: 75vh;   /* ⬅ moved MUCH lower */
+}
+
+@media (max-width: 1024px) {
+  .hero-content {
+    margin-top: 85vh;  /* laptops / tablets */
+  }
 }
 
 @media (max-width: 750px) {
   .hero-content {
-    margin-top: 44vh;    /* a bit lower on mobile */
+    margin-top: 95vh;  /* phones */
   }
 }
-
-
 
     .hero-kicker {
       letter-spacing: 0.15em;
@@ -80,7 +84,7 @@
       margin-bottom: 0.9rem;
     }
 
-    .hero-title {
+   .hero-title { font-size: clamp(1.6rem, 2.8vw, 2.4rem); }
       max-width: 900px;
       font-size: clamp(1.9rem, 3.2vw, 3rem);
       font-weight: 600;
@@ -171,6 +175,7 @@
 </div>
 </body>
 </html>
+
 
 
 
